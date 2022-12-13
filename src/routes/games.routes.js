@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { create, getAll } from "../controllers/games.controller";
-import { gameValidation } from "../middlewares/gameValidation.middleware";
+import { create, getAll } from "../controllers/games.controller.js";
+import { gameValidation } from "../middlewares/gameValidation.middleware.js";
 
 const router = Router();
 

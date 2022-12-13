@@ -1,4 +1,4 @@
-import { connectionDB } from "../db/database";
+import { connectionDB } from "../db/database.js";
 
 export async function getAll(req, res){
 
@@ -6,7 +6,7 @@ export async function getAll(req, res){
 
        const { rows } = await connectionDB.query("SELECT * FROM categories;")
 
-        res.send(rows);
+       res.send(rows);
 
     } catch (error) {
         
@@ -19,7 +19,8 @@ export async function create(req, res){
     const { name } = req.body;
 
     try {
-        await connectionDB.query("INSERT INTO categories (name) values ($1);", [name]);
+
+        await connectionDB.query("INSERT INTO categories(name) VALUES ($1);", [name]);
 
         res.sendStatus(201);
 

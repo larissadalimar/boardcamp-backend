@@ -1,19 +1,21 @@
-import { connectionDB } from "../db/database"
+import { connectionDB } from "../db/database.js"
 
 export async function categoryValidation(req, res, next){
     
-    const { name } = req.body
+    const { name } = req.body;
 
-    if(!name) return res.status(400)
+    if(!name) return res.status(400);
 
     try {
-        const { rows } = await connectionDB.query("SELECT name from categories where name=$1;", [name])
 
-        if(rows === name) return res.status(409)
+        const category  = await connectionDB.query("SELECT name from categories where name=$1;", [name]);
 
+        if(category.rowCount > 0) return res.status(409);
+
+        console.log("teste aqui");
     } catch (error) {
-        console.log(error)
+        res.status(500).send(error.message);
     }
 
-    next()
+    next();
 }

@@ -1,4 +1,4 @@
-import { connectionDB } from "../db/database";
+import { connectionDB } from "../db/database.js";
 
 export async function gameValidation(req, res, next){
 
@@ -6,17 +6,17 @@ export async function gameValidation(req, res, next){
 
     try {
 
-        const { rows } = await connectionDB.query("SELECT * FROM categories WHERE ID=$1", [categoryId])
+        const category = await connectionDB.query("SELECT * FROM categories WHERE ID=$1", [categoryId]);
 
-        if(rows.lenght === 0 || !name || stockTotal <= 0 || pricePerDay <= 0) return res.sendStatus(400)
+        if(category.rowCount < 1 || !name || stockTotal <= 0 || pricePerDay <= 0) return res.sendStatus(400);
 
-        const game = await connectionDB.query("SELECT * FROM games WHERE name=$1", [name])
+        const game = await connectionDB.query("SELECT * FROM games WHERE name=$1", [name]);
 
-        if(game.rows.lenght > 0) return res.sendStatus(409)
+        if(game.rows.lenght > 0) return res.sendStatus(409);
 
     } catch (error) {
 
-        res.status(500).send(error.message)
+        res.status(500).send(error.message);
     }
 
     next()
