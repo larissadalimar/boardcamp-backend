@@ -11,8 +11,6 @@ export async function categoryValidation(req, res, next){
         const category  = await connectionDB.query("SELECT name from categories where name=$1;", [name]);
 
         if(category.rowCount > 0) return res.status(409);
-
-        console.log("teste aqui");
     } catch (error) {
         res.status(500).send(error.message);
     }

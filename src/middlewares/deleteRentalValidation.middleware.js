@@ -7,9 +7,9 @@ export default async function deleteRentalValidation(req, res, next){
         
         const { rows } = await connectionDB.query("SELECT * FROM rentals WHERE id=$1;", [id]);
 
-        if(rows.length === 0) return res.sendtatus(404);
+        if(rows.length === 0) return res.sendStatus(404);
 
-        if(rows[0].returnDate === null) return res.sendtatus(400);
+        if(rows[0].returnDate === null) return res.sendStatus(400);
 
     } catch (error) {
 
