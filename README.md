@@ -10,6 +10,7 @@ Para instalar as dependências:
 Para rodar o projeto:
 
 1. Crie um banco de dados relacional
+2. Crie as tabelas e suas respectivas colunas conforme se pode ver nos arquivos da pasta `src/repositories`
 2. Crie o arquivo `.env` baseado no arquivo `.env.example`
 3. Coloque no arquivo `.env` a url de acesso ao banco e a porta onde vai estar rodando o projeto.
 4. Dentro da pasta do projeto, rode `npm run dev`
